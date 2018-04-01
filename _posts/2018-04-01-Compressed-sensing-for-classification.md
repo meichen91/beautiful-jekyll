@@ -12,21 +12,23 @@ I will first give [a very simple picture of the algorithm](#Section1) then in [m
 
 ## Algorithm in pictures
 <a name="Section1"></a>We will demonstrate the algorithm on the cat/dog classification problem using images of 121 cats and 121 dogs. The images are 64-by-64, i.e., 4096 pixels. To put the goal in simplier terms, we want to classify a potential picture accurately measuring as few pixels as possible. The original data is
-![]({{ "/img/SPOCC/DogCat_all.png" | absolute_url }})
+![CatsDogs](https://lh3.googleusercontent.com/7C1k2x0Giwurr63kIeMULDQTtYD07uf-7SHpFJx1J0j-4vnzJhV7SNIcBZxQmHtYpTseyYv3VGt0)
+
 ### Feature extraction
 4096 pixels is a lot of information and let us first reduce the dimension. The most common approach is principle component analysis (PCA) or singular value decomposition (SVD). Here are the first four modes: 
-![]({{ "/img/SPOCC/First_4_modes.png" | absolute_url }})
+![4Modes](https://lh3.googleusercontent.com/iseGMUArqtCFcfk3zCMfFnkQZUbFICC8xxX7pA3g4-11KdjGiUosgtq5s0ITmoq1fzcPfrPrGXWS "First 4 Modes")
+
 The modes are 'features' and they come out in descending order of 'importance'. The first one is a mean face. Mode 2 captures the general face shape of a cat, especially the pointy ears. Mode 3 has representative dog features. If we look at the singular value spectrum, we see that the dog/cat face data set lives on a relatively low dimension. So we then use a linear classifier on the rank truncated data. 
 ### Linear classifier
 The full rank is 242 and rank 5 means we use the first 5 modes to represent the data (i.e. ~2%). In the linear discriminant analysis ([LDA](https://www.quora.com/What-is-an-intuitive-explanation-for-linear-discriminant-analysis-LDA)), the data is projected on to 1D line and the distribution of the data along the line is represented by the following histogram. The blue and red lines are the centroids of the two classes
 
-![]({{ "/img/SPOCC/Accuracy_Rank_Demo.png" | absolute_url }})
+![RankTruncation_LDA](https://lh3.googleusercontent.com/fq2hgugUSWxnTOKUscRYnHDT_RJPDVXeyRLtGz_Tu4bCWYht1ubnRYpezWa4zJ8ANCrIx6j9kHgv "RankTruncation_Classifier")
 
 If a data point is closer to the blue line, it is classified as a cat; otherwise, a dog. So such a simple model can achieve quite high accuracy. Pretty cool.
 ### Sparse sensor location
 Under the LDA framework, the paper constructs an $$l_1$$ -minimisation problem to select the least number of sensors given a certain rank truncation. The example for rank 20 results in 20 sensors. The locations of the sensors are in red. If we train a new LDA classifier on the sparse sampled data, we can get a 83% accuracy! It is fascinating how few data we need. Think of it as a computer playing jigsaw puzzle. With only 20 pieces out of 4096, it does a good job guessing whether the puzzle is a dog or cat. Obvisouly, the trick is which 20 pieces to choose. If we look at the sensor locations, they are mostly at the face region. One is at the top, probably identifying the pointy ear. Several are around the eyes and mouth. 
 
-![]({{ "/img/SPOCC/Sensors_sparseClassification.png" | absolute_url }})
+![SensorLocation_Classifier](https://lh3.googleusercontent.com/-WTD7hvJnw6e3qLHREFkY_YPGwhTwM5c_UN9iJmtFrC4Hw9L_fIoHOyoUMVwBpY0S-2rJXpUxMsF "SensorLocation")
 
 <a name="Section2"></a>
 ## Algorithm in equations
@@ -51,7 +53,7 @@ $$
 
 ### LDA
 In the authors words: "LDA attempts to find a set of directions in feature space $$\vec{w} \in R^{r\times (c-1)}$$ (**discrimination vectors**), where the between-class variance is maximized and the within-class variance is minimized''. After projecting along this direction, the data points of the same class are clustered together (small in-class variance) while they are separated from other classes (large between-class variance) A good picture is this one [here](https://www.quora.com/What-is-an-intuitive-explanation-for-linear-discriminant-analysis-LDA).
-![enter image description here](https://qph.fs.quoracdn.net/main-qimg-de0e3fbb98f88884fcc75f6488360602)
+![LDA_Demo](https://qph.fs.quoracdn.net/main-qimg-de0e3fbb98f88884fcc75f6488360602)
 
 The discrimination vectors projects maps $$\vec{a}$$ in the feature space to the decision space $$\eta$$ where
 
@@ -71,7 +73,8 @@ It has been solved using the [cvx](http://cvxr.com/), a convex optimisation solv
  3. We will learn a new discrimination vector and use the new centroids to classify new examples.
 
 In the end, let me show the contrast between the fully sampled and data using SSPOC, that gives us 83% accuracy. Each stripe correspond to 20 pixels given the optimal sparse sensing pattern. 
-![]({{ "/img/SPOCC/DogCat_sparse.png" | absolute_url }})
+
+![SparseData](https://lh3.googleusercontent.com/LvvOn5Tu0ztvuUn--vJLNCmr8LiATM5_sc80mtk4ExFDwv5UIwaDzHC5QZGY-TWQqIYr28BlhFVR)
 
 ## Final thoughts
 Some ideas I would like to explore about the algorithm:
