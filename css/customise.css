@@ -1,0 +1,6 @@
+.katex-display { 
+	display: inline-block; 
+}
+.katex-display .katex {
+	text-align: center;
+}
