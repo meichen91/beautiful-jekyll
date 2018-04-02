@@ -23,7 +23,7 @@ The modes are 'features' and they come out in descending order of 'importance'. 
 The full rank is 242 and rank 5 means we use the first 5 modes to represent the data (i.e. ~2%). In the linear discriminant analysis ([LDA](https://www.quora.com/What-is-an-intuitive-explanation-for-linear-discriminant-analysis-LDA)), the data is projected on to 1D line and the distribution of the data along the line is represented by the following histogram. The blue and red lines are the centroids of the two classes
 
 ![RankTruncation_LDA](https://lh3.googleusercontent.com/fq2hgugUSWxnTOKUscRYnHDT_RJPDVXeyRLtGz_Tu4bCWYht1ubnRYpezWa4zJ8ANCrIx6j9kHgv "RankTruncation_Classifier")
-
+![]({{ "/img/SPOCC/Accuracy_Rank_Demo.png" | absolute_url }})
 If a data point is closer to the blue line, it is classified as a cat; otherwise, a dog. So such a simple model can achieve quite high accuracy. Pretty cool.
 ### Sparse sensor location
 Under the LDA framework, the paper constructs an $$l_1$$ -minimisation problem to select the least number of sensors given a certain rank truncation. The example for rank 20 results in 20 sensors. The locations of the sensors are in red. If we train a new LDA classifier on the sparse sampled data, we can get a 83% accuracy! It is fascinating how few data we need. Think of it as a computer playing jigsaw puzzle. With only 20 pieces out of 4096, it does a good job guessing whether the puzzle is a dog or cat. Obvisouly, the trick is which 20 pieces to choose. If we look at the sensor locations, they are mostly at the face region. One is at the top, probably identifying the pointy ear. Several are around the eyes and mouth. 
