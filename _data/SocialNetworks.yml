@@ -8,12 +8,12 @@
 
 facebook:
   name: "Facebook"
-  baseURL: "https://www.facebook.com/chem91"
+  baseURL: "https://www.facebook.com/"
   icon: "fa-facebook"
 
 github:
   name: "GitHub"
-  baseURL: "https://github.com/meichen91"
+  baseURL: "https://github.com/"
   icon: "fa-github"
 
 twitter:
@@ -38,7 +38,7 @@ email:
 
 linkedin:
   name: "LinkedIn"
-  baseURL: "https://linkedin.com/in/meichen-lu/"
+  baseURL: "https://linkedin.com/in/"
   icon: "fa-linkedin"
 
 xing:
