@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Compressed Sensing For Classification
-mathjax: true
 ---
 
 ## Introduction
@@ -29,7 +28,7 @@ The full rank is 242 and rank 5 means we use the first 5 modes to represent the 
 
 If a data point is closer to the blue line, it is classified as a cat; otherwise, a dog. So such a simple model can achieve quite high accuracy. Pretty cool.
 ### Sparse sensor location
-Under the LDA framework, the paper constructs an $\ell_1$ -minimisation problem to select the least number of sensors given a certain rank truncation. The example for rank 20 results in 20 sensors. The locations of the sensors are in red. If we train a new LDA classifier on the sparse sampled data, we can get a 83% accuracy! It is fascinating how few data we need. Think of it as a computer playing jigsaw puzzle. With only 20 pieces out of 4096, it does a good job guessing whether the puzzle is a dog or cat. Obvisouly, the trick is which 20 pieces to choose. If we look at the sensor locations, they are mostly at the face region. One is at the top, probably identifying the pointy ear. Several are around the eyes and mouth. 
+Under the LDA framework, the paper constructs an $\mathrm{\ell}_1$ -minimisation problem to select the least number of sensors given a certain rank truncation. The example for rank 20 results in 20 sensors. The locations of the sensors are in red. If we train a new LDA classifier on the sparse sampled data, we can get a 83% accuracy! It is fascinating how few data we need. Think of it as a computer playing jigsaw puzzle. With only 20 pieces out of 4096, it does a good job guessing whether the puzzle is a dog or cat. Obvisouly, the trick is which 20 pieces to choose. If we look at the sensor locations, they are mostly at the face region. One is at the top, probably identifying the pointy ear. Several are around the eyes and mouth. 
 
 ![]({{ "/img/Sensors_sparseClassification.png" | absolute_url }})
 
@@ -42,8 +41,8 @@ Ok, time for some maths! Here is the notations
  - Sampling matrix: $$\tilde{\Phi} \in \mathbb{R}^{p\times n}$$
  - Subsampled signal: $$\tilde{x} = \tilde{\Phi} \vec{x}$$, where $$\tilde{x} \in \mathbb{R}^p$$
 
-### PCA
-PCA/SVD is commonly used for dimension reduction/feature extraction and to see this [quora post](https://www.quora.com/What-is-an-intuitive-explanation-of-singular-value-decomposition-SVD) to get an intuition. 
+### principle component analysis(PCA)
+PCA/SVD is commonly used for dimension reduction/feature extraction. Have a look at this [quora post](https://www.quora.com/What-is-an-intuitive-explanation-of-singular-value-decomposition-SVD) to get an intuition. 
 SVD gives
 
 $$X = \Psi \Sigma V^*$$
@@ -54,10 +53,10 @@ $$
 \Psi_r^T: \mathbb{R}^n \rightarrow \mathbb{R}^r,  x \rightarrow \vec{a}
 $$
 
-### LDA
+### linear discriminant analysis(LDA)
 In the authors words: "LDA attempts to find a set of directions in feature space $$\vec{w} \in \mathbb{R}^{r\times (c-1)}$$ (**discrimination vectors**), where the between-class variance is maximized and the within-class variance is minimized''. After projecting along this direction, the data points of the same class are clustered together (small in-class variance) while they are separated from other classes (large between-class variance) A good picture is this one [here](https://www.quora.com/What-is-an-intuitive-explanation-for-linear-discriminant-analysis-LDA).
 
-![enter image description here](https://qph.fs.quoracdn.net/main-qimg-de0e3fbb98f88884fcc75f6488360602)
+![LDA_intuition](https://qph.fs.quoracdn.net/main-qimg-de0e3fbb98f88884fcc75f6488360602)
 
 The discrimination vectors projects maps $$\vec{a}$$ in the feature space to the decision space $$\eta$$ where
 
@@ -66,9 +65,9 @@ The discrimination vectors projects maps $$\vec{a}$$ in the feature space to the
 ### SSPOC
 This is the core part, where we select where to place the sensors. The paper states the optimisation goal being "to recompute a new projection to decision space directly from the data matrix composed of sparse measurements". Thus wer are looking for a sparse vector $$\vec{s}$$ so that 
 $$\eta = \vec{s}^T x$$ i.e., $$ \vec{s} = \Psi_r \vec{w}$$
-To promote sparsity means that we would like as many of the entries of $$\vec{s}$$ to be zero. It is often solved via the approximate $$\ell_1$$  minimisation:
+To promote sparsity means that we would like as many of the entries of $$\vec{s}$$ to be zero. It is often solved via the approximate $$\mathrm{\ell}_1$$  minimisation:
 
-$$ \vec{s} = \underset{\vec{s'}}{\mathrm{argmin}} ||\vec{s'}||_1 , \text{ subject to }  \Psi^T_r \vec{s'} = \vec{w}$$
+$$ \vec{s} = \underset{\vec{s'}}{\mathrm{argmin}} \lVert\vec{s'}\rVert_1 , \text{ subject to }  \Psi^T_r \vec{s'} = \vec{w}$$
 
 It has been solved using the [cvx](http://cvxr.com/), a convex optimisation solver. 
 ### Classify compressed sensing data
@@ -84,7 +83,7 @@ Some ideas I would like to explore about the algorithm:
  1. How large a sample does SSPOC need?
  2. how robust the algorithm is? Does it generalise to similar unknown samples well?
  3. Is there any metric to justify the sensor location? e.g., some information criteria?
- 4. During the $$\ell_1$$ optimisation, the vector $$\vec{s}$$ is not uniform so should we use the weights to fine-tune our sprase 'sampling'?
+ 4. During the $$\mathrm{\ell}_1$$ optimisation, the vector $$\vec{s}$$ is not uniform so should we use the weights to fine-tune our sprase 'sampling'?
 
 Recently, this group have explored how to use as few sensors to reconstruct the original signal ([Data-Driven Sparse Sensor Placement for Reconstruction, Manohar K. et al, 2017](https://arxiv.org/abs/1701.07569)). The reconstruction task is more akin to the most well-known compressed sensing use case while the classification bears an interesting twist. I feel strongly that a joint algorithm with nonlinear classifier could make it more powerful or robust. The hierarchical classification mentioned by Prof. Bing Brunton is also very desirable. I imagine that there could be a cascade of classifiers, which become more and more expensive and accurate. Maybe it can be used in a production line to reject faulty parts. 
 
