@@ -1,17 +1,16 @@
 ---
 layout: page
 title: About me
-subtitle: PhD at Cambridge | Co-founder of Tinylogics
+subtitle: PhD at Cambridge University | Co-founder of Tinylogics
 ---
 
-My name is Meichen. Welcome to my blog! I was trained as a Chemical Engineer. Had the chance to played with MRI machines during my PhD. Been through ups and downs, but luckily made it through, with the help from so many! 
+My name is Meichen. Welcome to my tech blog! I was trained as a Chemical Engineer. Had the chance to played with MRI machines during my PhD. Been through ups and downs, but luckily (about to) made it, with the help from so many! 
 
-Although I only came across the subject towards the end of my PhD, I have found something I really want to look into. To share something about this subject is why I started this blog.
+Although I only came across the subject, *data driven dynamics*, towards the end of my PhD, I have found it something I really want to look into. To share something about this subject is why I started this blog.
 
-I love cooking, play some violin and read a bit. 
+I love cooking, workout, play some violin, and read a bit. 
 
 ## Links
-Will put link to my papers here soon!
 
 Some answeres from me on <a href="https://www.quora.com/profile/Meichen-Lu" target="_blank">Quora</a> 
 
