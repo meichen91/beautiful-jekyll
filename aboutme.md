@@ -12,7 +12,7 @@ I love cooking, workout, play some violin, and read a bit.
 
 ## Links
 
-Some answeres from me on <a href="https://www.quora.com/profile/Meichen-Lu" target="_blank">Quora</a> 
+Some answers from me on <a href="https://www.quora.com/profile/Meichen-Lu" target="_blank">Quora</a> 
 
 This is the first gadget our startup made: <a href="http://tinylogics.com" target="_blank">Memo box</a>
 
