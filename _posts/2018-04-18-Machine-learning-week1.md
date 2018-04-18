@@ -1,11 +1,11 @@
 ---
 layout: post
-title: Machine learning summary: Week 1
+title: Machine learning summary - Week 1
 ---
 
-In order to prepare for interviews and get myself educated about this exciting field. I have started 'cramming' the fundamentals in the field. Although there are many cool and complicated tools in libraries and I can use them in a plug-and-go fashion, I do not find this approach satisfying. I want to know why things work. 
+To get myself educated about this exciting field, I have started 'cramming' the fundamentals in the field. Although there are many cool and complicated tools in libraries and I can use them in a plug-and-go fashion, I do not find this approach satisfying. I want to know why things work. 
 
-Personally, I believe that clear understanding of the fundamentals will be powerful in the long run. One clear indicator is to be able to explain things intuitively, as in the **Feynman Technique**. This belief determines the goal and strategy of my learning.
+Personally, I believe that clear understanding of the fundamentals will be powerful in the long run. One indicator is to be able to explain things intuitively, as in the **Feynman Technique**. This belief determines the goal and strategy of my learning.
 
 A great thing about machine learning is that there are so many great materials online and there is an active community. Because the aim is to understand the fundamentals and I enjoy learning by doing, I have found the following way for the first round:
 
@@ -38,13 +38,14 @@ There are lots of videos, python notebooks, and tutorials online. The Scikit lea
 ## Results summary
 ### Theory notes:
 - Bishop Notes
-		-  k-means clustering and Expectation maximisation
-		-  k-Nearest Neighbours density estimation
+	-  k-means clustering and Expectation maximisation
+	-  k-Nearest Neighbours density estimation
 - SVM
-		- I find the [SVM lecture in MIT 6.034 Artificial Intelligence course](16.%20Learning:%20Support%20Vector%20Machines%20-%20YouTube) to be a very helpful introduction. The Prof is really good at building from the fundamentals and telling a story!
+	- I find the [SVM lecture in MIT 6.034 Artificial Intelligence course](16.%20Learning:%20Support%20Vector%20Machines%20-%20YouTube) to be a very helpful introduction. The Prof is really good at building from the fundamentals and telling a story!
 - Neural Network
-		- A personal distillation of the [Deep Learning Tutorial from Stanford](http://ufldl.stanford.edu/tutorial/supervised/MultiLayerNeuralNetworks/).
-		- The online book (http://neuralnetworksanddeeplearning.com/) is also helpful.
+	- A personal distillation of the [Deep Learning Tutorial from Stanford](http://ufldl.stanford.edu/tutorial/supervised/MultiLayerNeuralNetworks/).
+	- The online book (http://neuralnetworksanddeeplearning.com/) is also helpful.
+
 ### Python notebooks
 1. [Logistic regression](https://github.com/meichen91/MachineLearning-Snippets/blob/master/CS229_PS/PS2_Q1_LogisticRegression_TrainingStability.ipynb)
 - Basic gradient descent implementation
@@ -69,13 +70,13 @@ There are lots of videos, python notebooks, and tutorials online. The Scikit lea
 
  - Highly recommend [the Talking Machines](https://www.thetalkingmachines.com/) podcast! I just learnt the EM before stubling upon an old episode on it. The explanation was consice and insightful. Also I learnt that people are using linear dynamical systems (LDS) in machine learning, such as in combination with hidden Markov Model. The example Ryan talked about echoes with my idea of using LDS with robotics. 
  - The [Microsoft Research podcast](https://www.microsoft.com/en-us/research/blog/category/podcast/) is also really interesting. The breath of research and impact of the 'grand goal' is fascinating.
- - Finished the book [Weapons of maths destruction](https://weaponsofmathdestructionbook.com/) recently. The book promotes building fairness, transparency, etc, into the algorithms. It explains the ideas behind the recent headline stories (Facebook and Cambridge Analytica*) and many more.
+ - Finished the book [Weapons of maths destruction](https://weaponsofmathdestructionbook.com/) recently. The book promotes building fairness, transparency, etc., into the algorithms. It explains the ideas behind the recent headline stories (Facebook and Cambridge Analytica*) and many more.
 \*This company has nothing to do with the University of Cambridge!
 
 ###  Other thoughts
-- Began to understand why Neural networks are so versatile.
+- Began to understand why neural networks are so versatile.
 - Vectorisation is extremely powerful! Although the vectorised version of the 2-layer NN looks similar to the stochastic one, it took me a whole night (but I find it worthwhile, for the happiness when it works :))
-- I used to think that we only need the right cost function and smart implementation of the optimisation. It is important. However, this two weeks of learning revealed a more insightful picture from the Bayesian perspective. It was an epiphany when I read about least square cost function being the maximum likelihood solution with Gaussian noise.
+- I used to think that we only need the right cost function and smart implementation of the optimisation. They are important. However, this two weeks of learning revealed a more insightful picture from the Bayesian perspective. It was an epiphany when I read about least square cost function being the maximum likelihood solution with Gaussian noise (Bishop (2006) §1.2.5).
 
 ### Some ideas
 - Visualisation of NN and the potential application of sparsity in NN.
