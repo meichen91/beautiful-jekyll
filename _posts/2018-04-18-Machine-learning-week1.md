@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Machine learning summary - Week 1
+title: Machine learning - Week 1
 ---
 
 To get myself educated about this exciting field, I have started 'cramming' the fundamentals in the field. Although there are many cool and complicated tools in libraries and I can use them in a plug-and-go fashion, I do not find this approach satisfying. I want to know why things work. 
@@ -23,26 +23,27 @@ A great thing about machine learning is that there are so many great materials o
 ### Week 0
 
  - Chapters 1 & 2 of *Bishop (2006): Pattern Recognition and Machine Learning*
- The book is very well-written but I do not find it a great material for 'cramming'. 
+	- The book is very well-written but I do not find it a great material for 'cramming'. 
  - Udacity: [Intro into Data Science](https://classroom.udacity.com/courses/ud170)
-The Ucacity course gave me some practice with numpy and pandas and helped me transit from using MatLab.
+	- The Ucacity course gave me some practice with numpy and pandas and helped me transit from using MatLab.
 
 ### Week 1
 - Stanford [CS229 Machine Learning](http://cs229.stanford.edu/syllabus.html)
-I mainly follow this Stanford Course because it was cleverly designed to introduce students to the field, so it means rigor and structure. (Also there are problem sheets to work through.) The other benefits is to get an motivation.
+	- I mainly follow this Stanford Course because it was cleverly designed to introduce students to the field, so it means rigor and structure. (Also there are problem sheets to work through.) The other benefits is to get an motivation.
 - Bishop (2006)
-Sometimes, using multiple materials can be confusing because of the different notations. I refer to Bishop (2006) to get a second perspective and answer some questions based on the lecture notes. The book is also a source of linking the concepts together
+	- Sometimes, using multiple materials can be confusing because of the different notations. I refer to Bishop (2006) to get a second perspective and answer some questions based on the lecture notes. 
+	- The book is also a source of linking the concepts together in a bigger picture.
 - Googling
-There are lots of videos, python notebooks, and tutorials online. The Scikit learn websites have many useful examples that are lightweight and insightful.
+	- There are lots of videos, python notebooks, and tutorials online. The Scikit learn websites have many useful examples that are lightweight and insightful.
 
 ## Results summary
 ### Theory notes:
-- Bishop Notes
+- [Bishop Notes](https://github.com/meichen91/MachineLearning-Snippets/blob/master/Notes/BishopNotes.pdf)
 	-  k-means clustering and Expectation maximisation
 	-  k-Nearest Neighbours density estimation
-- SVM
+- [SVM](https://github.com/meichen91/MachineLearning-Snippets/blob/master/Notes/SVM.pdf)
 	- I find the [SVM lecture in MIT 6.034 Artificial Intelligence course](16.%20Learning:%20Support%20Vector%20Machines%20-%20YouTube) to be a very helpful introduction. The Prof is really good at building from the fundamentals and telling a story!
-- Neural Network
+- [Neural Network](https://github.com/meichen91/MachineLearning-Snippets/blob/master/Notes/DeepLearning.pdf)
 	- A personal distillation of the [Deep Learning Tutorial from Stanford](http://ufldl.stanford.edu/tutorial/supervised/MultiLayerNeuralNetworks/).
 	- The online book (http://neuralnetworksanddeeplearning.com/) is also helpful.
 
@@ -75,8 +76,8 @@ There are lots of videos, python notebooks, and tutorials online. The Scikit lea
 
 ###  Other thoughts
 - Began to understand why neural networks are so versatile.
-- Vectorisation is extremely powerful! Although the vectorised version of the 2-layer NN looks similar to the stochastic one, it took me a whole night (but I find it worthwhile, for the happiness when it works :))
-- I used to think that we only need the right cost function and smart implementation of the optimisation. They are important. However, this two weeks of learning revealed a more insightful picture from the Bayesian perspective. It was an epiphany when I read about least square cost function being the maximum likelihood solution with Gaussian noise (Bishop (2006) §1.2.5).
+- Vectorisation is extremely powerful! (Although the vectorised version of the 2-layer NN looks similar to the stochastic one, it took me a whole night but I find it worthwhile, for the happiness when it works :))
+- I thought that we only need the right cost function and smart implementation of the optimisation. They are important. However, this two weeks of learning revealed a more insightful picture from the Bayesian perspective. It was an epiphany when I read about least square cost function being the maximum likelihood solution with Gaussian noise (Bishop (2006) §1.2.5).
 
 ### Some ideas
 - Visualisation of NN and the potential application of sparsity in NN.
