@@ -17,6 +17,8 @@ Motivated by the success last week, I took similar approaches and found the open
 	- Basics concepts on Markov decision process based on the lecture notes of [CS229](http://cs229.stanford.edu/syllabus.html){:target="_blank"}
 - [Algorithms](https://github.com/meichen91/MachineLearning-Snippets/blob/master/Notes/Algorithms.pdf){:target="_blank"}
 	- Notes from  [MIT 6.006 Introduction to Algorithms](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/index.htm){:target="_blank"}
+
+
 ### Notebooks
 - [K means for image compression](https://github.com/meichen91/MachineLearning-Snippets/blob/master/CS229_PS/PS3_Q5_KMeans_Compression.ipynb){:target="_blank"}
 	- Applied accelerated vectorised implementation
