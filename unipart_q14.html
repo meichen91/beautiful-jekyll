@@ -1,0 +1,47 @@
+---
+layout: page
+title: unipart test Q14
+subtitle: Displaying json
+use-site-title: true
+---
+<script>
+    function myFunction() {
+  // Get the checkbox
+  var checkBox = document.getElementById("myCheck");
+  // Get the output text
+  // var text = document.getElementsByClassName("stock_details");
+
+  // If the checkbox is checked, display the output text
+  if (checkBox.checked == true){
+    [].forEach.call(document.querySelectorAll('.stock_details'), function (el) {
+  el.style.display = 'block';
+});
+  } else {
+    [].forEach.call(document.querySelectorAll('.stock_details'), function (el) {
+  el.style.display = 'none';
+});
+  }
+}
+</script>
+<h1>
+    Label: {{site.data.unipart_q14_data.label}}
+</h1>
+Display the stock detail: <input type="checkbox" checked="checked" id="myCheck" onclick="myFunction()">
+{% for row in site.data.unipart_q14_data.row %}
+<div>
+    <h2>Level {{ row.level}}:</h2>
+    {% for location in row.locations %}
+    <h3>locations: {{ location.name }}</h3>
+    <div class = "stock_details">
+    <h4>Stock detail</h4>
+        <ul>
+            {% for stock in location.stock %}
+            <li>Product: {{ stock.product }}</li>
+            <li>Quantity: {{ stock.qty }}</li>
+            <li>Replenishment: {{ stock.replenishment }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+</div>
+{% endfor %}
