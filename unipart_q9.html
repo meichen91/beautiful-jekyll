@@ -1,0 +1,55 @@
+---
+layout: page
+title: unipart test Q9
+subtitle: Simple calculator using frontend Javascript
+use-site-title: true
+---
+<script>
+    function eval_expr (expr) {
+        if (expr.startsWith('SQRT')){
+            var res = expr.slice(4,).replace(/\(|\)/g, "");
+            var num = parseFloat(res)
+            if (num < 0){
+                return "Negative number in SQRT is not allowed"
+            } else {
+                return Math.sqrt(num)
+            }
+        } else {
+            if (expr.includes('+')){
+                expr_split = expr.split('+');
+                return parseFloat(expr_split[0]) + parseFloat(expr_split[1]);
+            } else if (expr.includes('-')){
+                expr_split = expr.split('-');
+                return parseFloat(expr_split[0]) - parseFloat(expr_split[1]);
+            } else if (expr.includes('*')){
+                expr_split = expr.split('*');
+                return parseFloat(expr_split[0]) * parseFloat(expr_split[1]);
+            } else if (expr.includes('/')){
+                expr_split = expr.split('/');
+                return parseFloat(expr_split[0]) / parseFloat(expr_split[1]);
+            } else if (expr.includes('^')){
+                expr_split = expr.split('^');
+                return Math.pow(parseFloat(expr_split[0]), parseFloat(expr_split[1]));
+            } else if (expr.includes('%')){
+                expr_split = expr.split('%');
+                return parseFloat(expr_split[0]) % parseFloat(expr_split[1]);
+            } else {
+                return parseFloat(expr);
+            }
+        }
+    }
+    function calculate() {
+        var input = document.getElementById("calculator_input").value;
+        var div_output = document.getElementById("output_display");
+        var output = eval_expr(input);
+        div_output.innerHTML = input + " = " + output + "<br>" + div_output.innerHTML;
+        document.getElementById("calculator_input").value = ""
+    }
+</script>
+<p>
+    Calculator implemented using front-end javascript. <br>
+    Supported operations: +,  -,  *,  /,   % (modulo),  ^(power), and  SQRT()
+</p>
+Calculate: <input type="text" id="calculator_input">
+<button onclick="calculate()">Go</button>
+<div id = 'output_display'></div>

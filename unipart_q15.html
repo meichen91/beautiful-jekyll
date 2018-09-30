@@ -5,11 +5,6 @@ subtitle: Display API query result
 use-site-title: true
 ---
 <script>
-// $.ajax({
-//   url: "https://api.github.com/users/unipartdigital",
-// }).done(function(data) {
-//   $('#query_result').append(JSON.stringify(data))
-// });
 $.ajax({
     url: "https://api.github.com/users/unipartdigital",
     type: 'GET',
@@ -31,4 +26,5 @@ $.ajax({
 </p>
 <p>If no data is returned, "No data found".</p>
 <p>If the API is down or returns an error, the error is printed out</p>
+<p>Query results: </p>
 <div id = "query_result"></div>
