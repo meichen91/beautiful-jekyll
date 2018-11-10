@@ -48,14 +48,16 @@ I shall demonstrate how SHAP values are computed using a simple regression tree 
 
 ![Two simple regression tree models]({{ "/img/TwoTreeModels.png" | absolute_url }})
 
-If we only have one example at each leaf node, we can get intuitively that Fever and Cough are equally important for Model A while cough is more important for Model B. Let us focus on the 'Fever = Yes, Cough = Yes' example for Model A. The full permutations of the two features are empyty set({}), Fever only ({F}), Cough only ({C}), both Fever and cough ({F, C}). The expected output given 'Fever = Yes' only, $f_x(\\{F = \text{Yes}\\})$, is 40 and the same goes to 'Cough = Yes' only, $f_x(\\{C = \text{Yes}\\}) = 40$. The expected values for Model A and B are given in the table
+If we only have one example at each leaf node, we can get intuitively that Fever and Cough are equally important for Model A while cough is more important for Model B. Let us focus on the 'Fever = Yes, Cough = Yes' example for Model A. The full permutations of the two features are empyty set({}), Fever only ({F}), Cough only ({C}), both Fever and cough ({F, C}). The expected output given 'Fever = Yes' only, $f_x(\\{F = \text{Yes}\\})$, is 40 and the same goes to 'Cough = Yes' only, $f_x(\\{C = \text{Yes}\\}) = 40$. 
+
+The expected values for Model A and B for different feature combinations are given in the table
 
 |Feature combinations| {} | {F} | {C} | {F, C}  |
 |--|--|--|--|--|
 | Model A: Fever = Yes, Cough = Yes | 20 | 40 | 40 | 80 |
 | Model B: Fever = Yes, Cough = Yes | 25 | 45 | 50 | 90 |
 
-To compute the SHAP value for Fever in model A using the above equation, there are two subsets of $S\subseteq N \setminus\\{i\\}$.
+To compute the SHAP value for Fever in Model A using the above equation, there are two subsets of $S\subseteq N \setminus\\{i\\}$.
 
 1. $S =$ { }, $\vert S\vert = 0, \vert S\vert! = 1$ and $S\cup\\{i\\} =$ {F}
 2. $S = $ {C}, $\vert S\vert= 1, \vert S\vert! = 1$ and $S \cup\\{i\\} =$ {F, C}
@@ -85,13 +87,13 @@ $$\phi = \phi_0 + \phi_F + \phi_C = 25 + 30 + 35 = 90$$
 ### Comparison with other feature importance metrics
 The paper also shows, using this extremely simple example, that SHAP overcomes the inconsistency problem in other feature importance metrics.  
 
-1. [Saabas](http://blog.datadive.net/interpreting-random-forests/){:target="_blank"} refers to computing the contribution of each feature based on the change in output given in each tree split. In model B, the first split on Cough increases the output from 25 to 50 and the second split on Fever increases the output from 50 to 90. Thus the feature contribution are $\phi_F = 40$ and $\phi_C = 25$. Its inconsistency is likely because it only considers the single tree configuration.
+1. [Saabas](http://blog.datadive.net/interpreting-random-forests/){:target="_blank"} refers to computing the contribution of each feature based on the change in output given in each tree split. In Model B, the first split on Cough increases the output from 25 to 50 and the second split on Fever increases the output from 50 to 90. Thus the feature contribution are $\phi_F = 40$ and $\phi_C = 25$. Its inconsistency is likely because it only considers the single tree configuration.
+![Regression tree Model B]({{ "/img/tree_ModelB.png" | absolute_url }}){:height="400px"}
 
-![Regression tree Model B]({{ "/img/tree_ModelB.png" | absolute_url }}){:height="500px"}
 
+2. Gain-based method is the default feature importance metric in Scikit-learn, which is evaluated on the entire model. For regression, it is computed as the reduction in MSE (mean squared error) based on each feature.   
 
-2. Gain based method is the default feature importance metric in Scikit learn evaluated on the entire model. For regression, it is computed as the reduction in MSE (mean squared error) based on each feature. 
-After the first split on Cough, the overall MSE reduces from 1425 to 800 and the second split reduces MSE from 800 to 0. Thus the feature importance of Cough = 625/1425 = 44% and Fever = 800/1425 = 56%. If we compare this to the model-wise SHAP values, $\text{mean}(|\text{SHAP values}|)$, $\phi_{F, model}$ = 20 and $\phi_{C, model}$ = 25. Again gain based is inconsistent.
+ After the first split on Cough, the overall MSE reduces from 1425 to 800 and the second split reduces MSE from 800 to 0. Thus the feature importance of Cough = 625/1425 = 44% and Fever = 800/1425 = 56%. If we compare this to the model-wise SHAP values, $\text{mean}(|\text{SHAP values}|)$, $\phi_{F, model}$ = 20 and $\phi_{C, model}$ = 25. Again gain-based is inconsistent.
 3. The only other metric that is consistent is the permutation test. Both methods are computationally intensive but SHAP is better as it gives far more detail/insight.
 
 This [link](https://github.com/meichen91/MachineLearning-Snippets/blob/master/ML_explanability/ToyExample_CoughFever.ipynb){:target="_blank"} has the code for the basic example.
@@ -127,7 +129,7 @@ The SHAP summary from KNN (n_neighbours = 3) shows significant non-linearity and
 
 ![SHAP summary plot for KNN]({{ "/img/SHAPSummary_KNN.png" | absolute_url }})
 
-The above two examples used the KernelExplainer interfaced with Scikit-learn and the TreeExplainer with XGBoost uses the accleration described in the paper. Here, I shall illustrate again the drawback of gain-based method in the next figure. The impact of Sex and Pclass are under-valued by the gain-based feature importance compared to SHAP. 
+The above two examples used the KernelExplainer interfaced with Scikit-learn and the TreeExplainer with XGBoost uses the accleration described in the paper. Here, I shall illustrate again the drawback of gain-based method in the next figure. The impact of Sex and Pclass are undervalued by the gain-based feature importance compared to SHAP. 
 
 ![SHAP and gain-based feature importance for XGBoost]({{ "/img/FeatureImportance_XGB.png" | absolute_url }})
 
@@ -151,6 +153,7 @@ There is one more hidden gem in the paper. As SHAP values try to isolate the eff
 
 ## Summary
 Hopefully, this blog gives an intuitive explanation of the Shapley value and how SHAP values are computed for a machine learning model. I shall emphasize again the consistency of SHAP compared to other methods. Most importantly, try creating some visualisations to interpret your model! There are [more examples](https://github.com/slundberg/shap/tree/master/notebooks){:target="_blank"} by the authors and the package is very simple to use.
+
 As a final remark, I still think that one should use more than one tool for interpreting the model. And these tools should not replace the hardwork figuring out how the model works . 
 
 
