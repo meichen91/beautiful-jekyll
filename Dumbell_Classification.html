@@ -372,6 +372,22 @@ table(pred == validation$classe)</code></pre>
 ##    C    0    4  683    9    1
 ##    D    0    0    0  633    0
 ##    E    0    0    0    1  720</code></pre>
+<p>We further verify the accuracy using cross-validation</p>
+<pre class="r"><code>set.seed(123)
+folds &lt;- createFolds(y = df_train$classe, k = 10, list = TRUE, returnTrain = FALSE)
+acc_all = NULL
+for (fold in folds){
+    validation = df_train[fold,]
+    rf = randomForest(classe ~ ., df_train[-fold,])
+    pred = predict(rf, validation)
+    acc_all = append(acc_all, mean(pred == validation$classe))
+}
+acc_all</code></pre>
+<pre><code>##  [1] 0.9959225 0.9989801 0.9938869 0.9969419 0.9974542 0.9979613 0.9964322
+##  [8] 0.9964304 0.9943963 0.9969419</code></pre>
+<p>The 95% confidence interval of the out-of-sample accuracy can be estimated from the 10-fold cross validation to be</p>
+<pre class="r"><code>mean(acc_all) + c(-1, 1) * qt(0.975, df = 9) * sd(acc_all)/sqrt(10)</code></pre>
+<pre><code>## [1] 0.9954376 0.9976320</code></pre>
 </div>
 <div id="random-forest-model" class="section level2">
 <h2>Random forest model</h2>
@@ -399,7 +415,7 @@ plot(df_train$pitch_forearm, col = df_train$classe, xlab = 'index', ylab = 'pitc
 </div>
 <div id="summary" class="section level2">
 <h2>Summary</h2>
-<p>In this study, we built classification models for the dumbell exercise using data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants. Random forest model outperforms decision tree and multinomial regression. It indicates that there are nonlinear relationship between features. By visualising the most important features from random forest model, the nonlinear relationship is confirmed.</p>
+<p>In this study, we built classification models for the dumbell exercise using data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants. Random forest model outperforms decision tree and multinomial regression and the 95% confidence interval of the accuracy is estimated using cross validation to be <span class="math inline">\([0.995, 0.998]\)</span>. It indicates that there are nonlinear relationship between features. By visualising the most important features from random forest model, the nonlinear relationship is confirmed.</p>
 </div>
 
 
